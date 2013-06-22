@@ -25,13 +25,9 @@ $photo = $_FILES["image"];
 
 $photo_bytes = file_get_contents($photo["tmp_name"]);
 
-# do any necessary processing
+# do any necessary processing - crop? scale?
 
 # hit the API with curl
-# curl -X POST -F image=@glass-close.jpg
-#  -H 'Authorization: Token WE27xAaZUCoD7R2dDENPeGdyzploQBKVwRM6Qkee'
-#  -H 'Accept: application/json' https://query-api.kooaba.com/v4/query
-
 $boundary = uniqid();
 
 # Construct the body of the request
@@ -49,22 +45,30 @@ $context = stream_context_create(array(
 
 $result = file_get_contents("https://query-api.kooaba.com/v4/query", false, $context);
 
-echo "Result: ", $result;
-# parse response
+$parsed_result = json_decode($result);
+if($parsed_result->results && sizeof($parsed_result->results) > 0) {
+  // if we have a result
+  $score = $parsed_result->results[0]->score;
+//  echo "score $score<br/>";
 
-# render the happy / sad / angry cow page
-if($happy) {
-  echo "happy cow!";
-} else if ($sad) {
-  echo "Sad cow!";
+  $metadata = $parsed_result->results[0]->metadata;
+  $decision = $metadata->decision;
+
+  if($decision == "happy") {
+    echo "happy cow!";
+  } else if ($decision = "sad") {
+    echo "sad cow!";
+  }
+
+  # Render detailed attributes
+  echo "<dl id='details'>";
+  foreach($metadata as $key => $value) {
+    if($key != "decision") {
+      echo "<dt>$key</dt><dd>$value</dd>";
+    }
+  }
+
+  echo "</dl>";
 } else {
   echo "unknown cow!";
 }
-
-# Render detailed attributes
-?>
-<ul id="details">
-  <li>Attribute 1: value</li>
-  <li>Attribute 2: value</li>
-  <li>Attribute 3: value</li>
-</ul>
