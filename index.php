@@ -39,7 +39,7 @@ function hideSplash() {
 			antibiotic-free and organic!
 			<form action="upload.php" method="post"
 			enctype="multipart/form-data" data-ajax="false">
-			  <input type="file" name="image" accept="image/*" capture>
+			  <input type="file" name="image" accept="image/*" capture="camera">
 			    <input type="submit" value="Upload">
 				</form>
 			</div><!-- /content -->
