@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<? echo 'hello!' ?><!DOCTYPE html> 
 <html> 
 	<head> 
 		<title>My Page</title> 
