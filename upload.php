@@ -1,8 +1,22 @@
-<form action="upload.php" method="post"
-      enctype="multipart/form-data" data-ajax="false">
-  <input type="file" name="image" accept="image/*" capture>
-  <input type="submit" value="Upload">
-</form>
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet"
+			href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css"/>
+		<script
+			src="http://code.jquery.com/jquery-1.7.1.min.js"></script>			
+		<script
+			src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+		</script>
+		<script src="js.js"></script>
+	</head> 
+						
+	<body> 
+
+<div id="home" data-theme="b" data-role="page">
+	<div data-role="header">
+		<h1>Agent Yum</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
 
 <?php
 # add image part to a kooaba multipart request
@@ -80,4 +94,11 @@ if($parsed_result->results && sizeof($parsed_result->results) > 0) {
   echo "</dl>";
 } else {
   echo "unknown cow!";
-}
+}?>
+	<? include ('form.php') ?>	
+	</div><!-- /content -->
+</div><!-- /page -->
+
+
+</body>
+</html>
