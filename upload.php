@@ -1,3 +1,9 @@
+<form action="upload.php" method="post"
+      enctype="multipart/form-data" data-ajax="false">
+  <input type="file" name="image" accept="image/*" capture>
+  <input type="submit" value="Upload">
+</form>
+
 <?php
 # add image part to a kooaba multipart request
 function image_part($boundary, $attr_name, $file_name, $data) {
@@ -22,6 +28,7 @@ $sad = false;
 
 # get the image
 $photo = $_FILES["image"];
+//print_r($photo);
 
 $photo_bytes = file_get_contents($photo["tmp_name"]);
 
@@ -42,14 +49,16 @@ $context = stream_context_create(array(
     'content' => $body
   )
 ));
+//print_r($context);
 
 $result = file_get_contents("https://query-api.kooaba.com/v4/query", false, $context);
 
 $parsed_result = json_decode($result);
 if($parsed_result->results && sizeof($parsed_result->results) > 0) {
+//  print_r($parsed_result);
   // if we have a result
   $score = $parsed_result->results[0]->score;
-//  echo "score $score<br/>";
+  //echo "score $score<br/>";
 
   $metadata = $parsed_result->results[0]->metadata;
   $decision = $metadata->decision;
