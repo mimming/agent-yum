@@ -1,3 +1,9 @@
+<form action="upload.php" method="post"
+      enctype="multipart/form-data" data-ajax="false">
+  <input type="file" name="image" accept="image/*" capture>
+  <input type="submit" value="Upload">
+</form>
+
 <?php
 # add image part to a kooaba multipart request
 function image_part($boundary, $attr_name, $file_name, $data) {
