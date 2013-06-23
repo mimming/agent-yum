@@ -43,7 +43,6 @@ function get_google_api_client() {
 
   $client->setScopes(array(
     'https://www.googleapis.com/auth/glass.timeline',
-    'https://www.googleapis.com/auth/glass.location',
     'https://www.googleapis.com/auth/userinfo.profile'));
 
   return $client;

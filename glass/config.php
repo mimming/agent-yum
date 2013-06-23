@@ -22,6 +22,6 @@ $api_client_id = "902452391907.apps.googleusercontent.com";
 $api_client_secret = "2lD1yGvfL0YPtrtCZhmToUtY";
 $api_simple_key = "AIzaSyChrvey3qBmPx-RWlaA1iS0VJSk9C2FCsY";
 
-$base_url = "http://localhost/mirror-quickstart-php";
+$base_url = "http://agentyum.com/glass";
 
 $sqlite_database = "/tmp/database.sqlite";

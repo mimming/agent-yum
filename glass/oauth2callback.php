@@ -18,9 +18,8 @@
 
 require_once 'config.php';
 require_once 'mirror-client.php';
-require_once 'google-api-php-client/src/Google_Client.php';
-require_once 'google-api-php-client/src/contrib/Google_Oauth2Service.php';
 require_once 'util.php';
+require_once 'google-api-php-client/src/contrib/Google_Oauth2Service.php';
 
 $client = get_google_api_client();
 
@@ -45,11 +44,11 @@ if (isset($_GET['code'])) {
   bootstrap_new_user();
 
   // redirect back to the base url
-  header('Location: ' . $base_url);
+  header('Location: http://agentyum.com');
 } elseif (!isset($_SESSION['userid']) || get_credentials($_SESSION['userid']) == null) {
   // Handle step 1 of the OAuth 2.0 dance - redirect to Google
   header('Location: ' . $client->createAuthUrl());
 } else {
   // We're authenticated, redirect back to base_url
-  header('Location: ' . $base_url);
+  header('Location: http://agentyum.com');
 }
