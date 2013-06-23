@@ -1,0 +1,18 @@
+@import url(http://fonts.googleapis.com/css?family=Ceviche+One);
+h1, h2{
+	text-align:center;
+	font-family: 'Ceviche One', cursive;
+	font-weight:300;
+	font-size:30px;
+}
+#fakefile{
+	padding:40px;
+}
+#file {
+	display:none;
+}
+#cow {
+	text-align:center;
+	margin:0 auto;
+}
+.ui-btn-inner {border-top:none;}

@@ -1,9 +1,24 @@
-<form action="upload.php" method="post"
-      enctype="multipart/form-data" data-ajax="false">
-  <input type="file" name="image" accept="image/*" capture>
-  <input type="submit" value="Upload">
-</form>
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet"
+			href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css"/>
+		<script
+			src="http://code.jquery.com/jquery-1.7.1.min.js"></script>			
+		<script
+			src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+		</script>
+		<script src="js.js"></script>
+		<link rel="stylesheet" href="style.css" type="text/css">
+	</head> 
+						
+	<body> 
 
+<div id="home" data-theme="a" data-role="page">
+	<div data-role="header">
+		<h1>Agent Yum</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+<div style="text-align:center">
 <?php
 # add image part to a kooaba multipart request
 function image_part($boundary, $attr_name, $file_name, $data) {
@@ -64,9 +79,9 @@ if($parsed_result->results && sizeof($parsed_result->results) > 0) {
   $decision = $metadata->decision;
 
   if($decision == "happy") {
-    echo "happy cow!";
+    echo "<img src='images/happy-cow.png' id='cow'>";
   } else if ($decision = "sad") {
-    echo "sad cow!";
+    echo "<img src='images/sick-cow.png' id='cow'>";
   }
 
   # Render detailed attributes
@@ -79,5 +94,25 @@ if($parsed_result->results && sizeof($parsed_result->results) > 0) {
 
   echo "</dl>";
 } else {
-  echo "unknown cow!";
-}
+  echo "<img src='images/confused-cow.png' id='cow'>";
+}?>
+</div>
+	<form>
+
+	<fieldset data-role="controlgroup" data-theme="a">
+		<input type="checkbox" name="checkbox-1" id="checkbox-1" checked="checked" class="custom" />
+		<label for="checkbox-1">Antibiotic Free</label>
+		<input type="checkbox" name="checkbox-2" id="checkbox-2" class="custom" />
+		<label for="checkbox-2">Certified Organic</label>
+		<input type="checkbox" name="checkbox-3" checked="checked" id="checkbox-3" class="custom" />
+		<label for="checkbox-3">Kosher</label>
+    </fieldset>
+
+	</form>
+	<? include ('form.php') ?>	
+	</div><!-- /content -->
+</div><!-- /page -->
+
+
+</body>
+</html>
