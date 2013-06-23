@@ -88,5 +88,5 @@ function bootstrap_new_user() {
     "http://agentyum.com/images/agent-yum-share.png");
 
   subscribe_to_notifications($mirror_service, "timeline",
-    $_SESSION['userid'], $base_url . "/notify.php");
+    $_SESSION['userid'], "https://mirrornotifications.appspot.com/forward?url=http://agentyum.com/glass/notify.php");
 }
