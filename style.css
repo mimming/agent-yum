@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Ceviche+One);
-h1, h2{
+.ui-header h1.ui-title, h2{
 	text-align:center;
 	font-family: 'Ceviche One', cursive;
 	font-weight:300;
