@@ -12,7 +12,7 @@
 						
 	<body> 
 
-<div id="home" data-theme="b" data-role="page">
+<div id="home" data-theme="a" data-role="page">
 	<div data-role="header">
 		<h1>Agent Yum</h1>
 	</div><!-- /header -->
@@ -97,7 +97,6 @@ if($parsed_result->results && sizeof($parsed_result->results) > 0) {
   echo "<img src='images/confused-cow.png' id='cow'>";
 }?>
 </div>
-	<h2>Scan Again</h2>
 	<form>
 
 	<fieldset data-role="controlgroup" data-theme="a">

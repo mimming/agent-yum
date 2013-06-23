@@ -1,11 +1,12 @@
-@import url(http://fonts.googleapis.com/css?family=Knewave);
+@import url(http://fonts.googleapis.com/css?family=Ceviche+One);
 h1, h2{
 	text-align:center;
-	font-family: 'Knewave', cursive;
+	font-family: 'Ceviche One', cursive;
 	font-weight:300;
+	font-size:30px;
 }
 #fakefile{
-	padding:12px;
+	padding:40px;
 }
 #file {
 	display:none;
