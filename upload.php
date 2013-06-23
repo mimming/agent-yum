@@ -8,6 +8,7 @@
 		</script>
 		<script src="js.js"></script>
 		<link rel="stylesheet" href="style.css" type="text/css">
+		<link rel="icon" type="image/png" href="/favicon.png" />
 	</head> 
 						
 	<body> 

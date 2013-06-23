@@ -39,6 +39,7 @@ jQuery.fn.center = function () {
 // Hides mobile browser's address bar when page is done loading.
       
 		</script>
+	<link rel="icon" type="image/png" href="/favicon.png" />
 	</head> 
 						
 	<body> 
