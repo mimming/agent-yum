@@ -16,13 +16,13 @@ initial-scale=1.0, maximum-scale=1.0"/>
 		<script src="js.js"></script>
 		<link rel="stylesheet" href="style.css" type="text/css">
 	<script type="text/javascript">
-$(function() {
+/*$(function() {
   setTimeout(hideSplash, 2000);
 });
-
+*/
 function hideSplash() {
-  $.mobile.changePage("#home", "fade");
-	$("#img").center();
+  //$.mobile.changePage("#home", "fade");
+	//$("#img").center();
 	// Hides mobile browser's address bar when page is done loading.
 	      window.addEventListener('load', function(e) {
 		          setTimeout(function() { window.scrollTo(0, 1); }, 1);
@@ -44,21 +44,25 @@ jQuery.fn.center = function () {
 						
 	<body> 
 
-<div data-role="page" data-theme="a" id="splash" 
-	style="background: #000; text-align:center;"> 
-    <div class="splash" id="img">
-        <img src="images/agent-yum.png" alt="splash" />
-    </div>
-</div>
 
 <div id="home" data-theme="a" data-role="page">
 	<div data-role="header">
 		<h1>Agent Yum</h1>
 	</div><!-- /header -->
+   <div class="splash" id="img">
+        <img src="images/agent-yum-logo.png" alt="splash" />
+    </div>
+
 
 	<div data-role="content">
 	<? include ('form.php') ?>	
 	</div><!-- /content -->
+
+
+ 
+
+
+
 </div><!-- /page -->
 
 </body>

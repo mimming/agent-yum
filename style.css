@@ -5,6 +5,8 @@ h1, h2{
 	font-weight:300;
 	font-size:30px;
 }
+
+.splash {margin-top:2em; text-align:center;}
 #fakefile{
 	padding:40px;
 }
