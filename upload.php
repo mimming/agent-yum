@@ -7,11 +7,12 @@
 			src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
 		</script>
 		<script src="js.js"></script>
+		<link rel="stylesheet" href="style.css" type="text/css">
 	</head> 
 						
 	<body> 
 
-<div id="home" data-theme="b" data-role="page">
+<div id="home" data-theme="a" data-role="page">
 	<div data-role="header">
 		<h1>Agent Yum</h1>
 	</div><!-- /header -->
@@ -95,6 +96,19 @@ if($parsed_result->results && sizeof($parsed_result->results) > 0) {
 } else {
   echo "unknown cow!";
 }?>
+	<h2>Scan Again</h2>
+	<form>
+
+	<fieldset data-role="controlgroup">
+		<input type="checkbox" name="checkbox-1" id="checkbox-1" checked="checked" class="custom" />
+		<label for="checkbox-1">Antibiotic Free</label>
+		<input type="checkbox" name="checkbox-2" id="checkbox-2" class="custom" />
+		<label for="checkbox-2">Certified Organic</label>
+		<input type="checkbox" name="checkbox-3" checked="checked" id="checkbox-3" class="custom" />
+		<label for="checkbox-3">Kosher</label>
+    </fieldset>
+
+	</form>
 	<? include ('form.php') ?>	
 	</div><!-- /content -->
 </div><!-- /page -->
