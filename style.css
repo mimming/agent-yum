@@ -1,0 +1,16 @@
+@import url(http://fonts.googleapis.com/css?family=Knewave);
+h1, h2{
+	text-align:center;
+	font-family: 'Knewave', cursive;
+	font-weight:300;
+}
+#fakefile{
+	padding:12px;
+}
+#file {
+	display:none;
+}
+#cow {
+	text-align:center;
+	margin:0 auto;
+}

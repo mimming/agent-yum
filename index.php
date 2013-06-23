@@ -43,14 +43,14 @@ jQuery.fn.center = function () {
 						
 	<body> 
 
-<div data-role="page" data-theme="a" id="splash" 
+<div data-role="page" data-theme="c" id="splash" 
 	style="background: #000; text-align:center;"> 
     <div class="splash" id="img">
         <img src="images/agent-yum.png" alt="splash" />
     </div>
 </div>
 
-<div id="home" data-theme="a" data-role="page">
+<div id="home" data-theme="b" data-role="page">
 	<div data-role="header">
 		<h1>Agent Yum</h1>
 	</div><!-- /header -->

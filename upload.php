@@ -12,13 +12,13 @@
 						
 	<body> 
 
-<div id="home" data-theme="a" data-role="page">
+<div id="home" data-theme="b" data-role="page">
 	<div data-role="header">
 		<h1>Agent Yum</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">
-
+<div style="text-align:center">
 <?php
 # add image part to a kooaba multipart request
 function image_part($boundary, $attr_name, $file_name, $data) {
@@ -79,9 +79,9 @@ if($parsed_result->results && sizeof($parsed_result->results) > 0) {
   $decision = $metadata->decision;
 
   if($decision == "happy") {
-    echo "happy cow!";
+    echo "<img src='images/happy-cow.png' id='cow'>";
   } else if ($decision = "sad") {
-    echo "sad cow!";
+    echo "<img src='images/sick-cow.png' id='cow'>";
   }
 
   # Render detailed attributes
@@ -94,12 +94,13 @@ if($parsed_result->results && sizeof($parsed_result->results) > 0) {
 
   echo "</dl>";
 } else {
-  echo "unknown cow!";
+  echo "<img src='images/confused-cow.png' id='cow'>";
 }?>
+</div>
 	<h2>Scan Again</h2>
 	<form>
 
-	<fieldset data-role="controlgroup">
+	<fieldset data-role="controlgroup" data-theme="a">
 		<input type="checkbox" name="checkbox-1" id="checkbox-1" checked="checked" class="custom" />
 		<label for="checkbox-1">Antibiotic Free</label>
 		<input type="checkbox" name="checkbox-2" id="checkbox-2" class="custom" />
