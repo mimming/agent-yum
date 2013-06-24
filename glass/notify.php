@@ -24,28 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] != "POST") {
   exit();
 }
 
-// Always respond with a 200 right away and then terminate the connection to prevent notification
-// retries. How this is done depends on your HTTP server configs. I'll try a few common techniques
-// here, but if none of these work, start troubleshooting here.
-
-// First try: the content length header
-header("Content-length: 0");
-
-// Next, assuming it didn't work, attempt to close the output buffer by setting the time limit.
-ignore_user_abort(true);
-set_time_limit(0);
-
-// And one more thing to try: forking the heavy lifting into a new process. Yeah, crazy eh?
-if (function_exists('pcntl_fork')) {
-  $pid = pcntl_fork();
-  if ($pid == -1) {
-    error_log("could not fork!");
-    exit();
-  } else if ($pid) {
-    // fork worked! but I'm the parent. time to exit.
-    exit();
-  }
-}
 
 // In the child process (hopefully). Do the processing.
 require_once 'config.php';
@@ -56,6 +34,8 @@ require_once 'util.php';
 
 // Parse the request body
 $request_bytes = @file_get_contents('php://input');
+
+file_put_contents("/tmp/notify", $request_bytes);
 $request = json_decode($request_bytes, true);
 
 // A notification has come in. If there's an attached photo, bounce it back
@@ -80,11 +60,14 @@ switch ($request['collection']) {
 
         $timeline_item = $mirror_service->timeline->get($timeline_item_id);
 
-        foreach($timeline_item->getAttachments() as $j => $attachment) {
-          $attachment = $mirror_service->timeline->attachments->get($timeline_item_id, $attachment.getId());
+        foreach ($timeline_item->getAttachments() as $j => $attachment) {
+          $attachid = $attachment->getId();
+
+          $attachment = $mirror_service->timeline_attachments->get($timeline_item_id, $attachid);
           $bytes = download_attachment($timeline_item_id, $attachment);
 
           require_once("functions.php");
+
 
           # setup config variables
           $query_key = "WE27xAaZUCoD7R2dDENPeGdyzploQBKVwRM6Qkee";
@@ -97,13 +80,13 @@ switch ($request['collection']) {
           $boundary = uniqid();
 
           # Construct the body of the request
-          $body  = image_part($boundary, "image", $file_name, $bytes);
+          $body = image_part($boundary, "image", $file_name, $bytes);
           $body .= "--" . $boundary . "--\r\n";
 
           $context = stream_context_create(array(
             'http' => array(
               'method' => 'POST',
-              'header' => 'Content-type: multipart/form-data; boundary='.$boundary."\r\n" .
+              'header' => 'Content-type: multipart/form-data; boundary=' . $boundary . "\r\n" .
               'Authorization: Token ' . $query_key,
               'content' => $body
             )
@@ -112,26 +95,73 @@ switch ($request['collection']) {
           $result = file_get_contents($url, false, $context);
 
           $echo_timeline_item = new Google_TimelineItem();
-          $echo_timeline_item->setNotification(
-            new google_NotificationConfig(array("level"=>"DEFAULT")));
+          $echo_timeline_item->setNotification(new google_NotificationConfig(array("level" => "DEFAULT")));
 
-          #TODO: foramt timeline item
-          $echo_timeline_item->setText($result);
-          insert_timeline_item($mirror_service, $echo_timeline_item, null, null);
 
+          echo $result;
+
+          $parsed_result = json_decode($result);
+          if ($parsed_result->results && sizeof($parsed_result->results) > 0) {
+            $name = $parsed_result->results[0]->title;
+
+
+            // if we have a result
+            $score = $parsed_result->results[0]->score;
+            //echo "score $score<br/>";
+
+            $metadata = $parsed_result->results[0]->metadata;
+
+            $decision = $metadata->decision;
+
+            $figureurl = "http://agentyum.com/images/confused-cow.png";
+            if ($decision == "happy") {
+              $figureUrl = "http://agentyum.com/images/happy-cow.png";
+            } else if ($decision = "sad") {
+              $figureUrl = "http://agentyum.com/images/sick-cow.png";
+            }
+            $timeline_html = "<article><figure><div style='margin:25px;'><img src='$figureUrl'  style='width:215px'/><p class='text-auto-size'>$name</p></div></figure>";
+
+            $articleHtml = "<section>";
+            # Render detailed attributes
+            foreach ($metadata as $key => $value) {
+              if ($key != "decision") {
+                if ($value == 1) {
+                  $articleHtml .= "<div id='details' style='background-color: rgb(20,108,33);margin: 2px;border-radius: 4px;padding:7px'>$key</div>";
+                } else {
+                  $fixed_key = preg_replace("/No/", "", $key);
+                  $fixed_key = preg_replace("/no/", "", $fixed_key);
+                  $fixed_key = preg_replace("/Not/", "", $fixed_key);
+                  $fixed_key = preg_replace("/not/", "", $fixed_key);
+                  $fixed_key = preg_replace("/Free/", "", $fixed_key);
+                  $fixed_key = preg_replace("/free/", "", $fixed_key);
+                  $articleHtml .= "<div id='details' style='background-color: rgb(141,6,0);margin: 2px;border-radius: 4px;padding:7px'>$fixed_key</div>";
+                }
+              }
+            }
+            $articleHtml .= "</section></article>";
+
+            $timeline_html .= $articleHtml;
+
+            echo $timeline_html;
+            $echo_timeline_item->setHtml($timeline_html);
+
+            insert_timeline_item($mirror_service, $echo_timeline_item, null, null);
+
+          }
+          break;
         }
-        break;
       }
     }
-
     break;
-  case 'locations':
+
+  case
+  'locations':
     $location_id = $request['itemId'];
     $location = $mirror_service->locations->get($location_id);
     // Insert a new timeline card, with a copy of that photo attached
     $loc_timeline_item = new Google_TimelineItem();
     $loc_timeline_item->setText("You are at " . $location->getLatitude() . " by " .
-        $location->getLongitude());
+    $location->getLongitude());
 
     insert_timeline_item($mirror_service, $loc_timeline_item, null, null);
     break;

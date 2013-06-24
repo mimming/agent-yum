@@ -71,7 +71,8 @@ $result = file_get_contents("https://query-api.kooaba.com/v4/query", false, $con
 
 $parsed_result = json_decode($result);
 if($parsed_result->results && sizeof($parsed_result->results) > 0) {
-//  print_r($parsed_result);
+  $name = $parsed_result->results[0]->title;
+
   // if we have a result
   $score = $parsed_result->results[0]->score;
   //echo "score $score<br/>";
@@ -85,33 +86,44 @@ if($parsed_result->results && sizeof($parsed_result->results) > 0) {
     echo "<img src='images/sick-cow.png' id='cow'>";
   }
 
+  echo "<p>$name</p>";
   # Render detailed attributes
-  echo "<dl id='details'>";
   foreach($metadata as $key => $value) {
     if($key != "decision") {
-      echo "<dt>$key</dt><dd>$value</dd>";
+      if($value == 1) {
+        echo "<div id='details' style='background-color: rgb(20,108,33);margin: 2px;border-radius: 4px;padding:7px'>$key</div>";
+      } else {
+        $fixed_key = preg_replace("/No/", "", $key);
+        $fixed_key = preg_replace("/no/", "", $fixed_key);
+        $fixed_key = preg_replace("/Not/", "", $fixed_key);
+        $fixed_key = preg_replace("/not/", "", $fixed_key);
+        $fixed_key = preg_replace("/Free/", "", $fixed_key);
+        $fixed_key = preg_replace("/free/", "", $fixed_key);
+        echo "<div id='details' style='background-color: rgb(141,6,0);margin: 2px;border-radius: 4px;padding:7px'>$fixed_key</div>";
+      }
     }
   }
 
-  echo "</dl>";
 } else {
   echo "<img src='images/confused-cow.png' id='cow'>";
 }?>
 </div>
-	<form>
+	<? include ('form.php') ?>
+    <h2>Settings</h2>
+    <form>
 
-	<fieldset data-role="controlgroup" data-theme="a">
-		<input type="checkbox" name="checkbox-1" id="checkbox-1" checked="checked" class="custom" />
-		<label for="checkbox-1">Antibiotic Free</label>
-		<input type="checkbox" name="checkbox-2" id="checkbox-2" class="custom" />
-		<label for="checkbox-2">Certified Organic</label>
-		<input type="checkbox" name="checkbox-3" checked="checked" id="checkbox-3" class="custom" />
-		<label for="checkbox-3">Kosher</label>
-    </fieldset>
+      <fieldset data-role="controlgroup" data-theme="a">
+        <input type="checkbox" name="checkbox-1" id="checkbox-1" checked="checked" class="custom" />
+        <label for="checkbox-1">Antibiotic Free</label>
+        <input type="checkbox" name="checkbox-2" id="checkbox-2" class="custom" />
+        <label for="checkbox-2">Certified Organic</label>
+        <input type="checkbox" name="checkbox-3" checked="checked" id="checkbox-3" class="custom" />
+        <label for="checkbox-3">Kosher</label>
+      </fieldset>
 
-	</form>
-	<? include ('form.php') ?>	
-	</div><!-- /content -->
+    </form>
+
+  </div><!-- /content -->
 </div><!-- /page -->
 
 
