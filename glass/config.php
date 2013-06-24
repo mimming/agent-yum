@@ -18,10 +18,10 @@
 
 // TODO: You must configure these fields for the starter project to function.
 // Visit https://developers.google.com/glass/getting-started to learn more
-$api_client_id = "902452391907.apps.googleusercontent.com";
-$api_client_secret = "2lD1yGvfL0YPtrtCZhmToUtY";
-$api_simple_key = "AIzaSyChrvey3qBmPx-RWlaA1iS0VJSk9C2FCsY";
+$api_client_id = "YOUR_CLIENT_ID";
+$api_client_secret = "YOUR_CLIENT_SECRET";
+$api_simple_key = "YOUR_API_KEY";
 
-$base_url = "https://mimming.com/agent-yum/glass";
+$base_url = "https://agentyum.com/glass";
 
 $sqlite_database = "/tmp/database.sqlite";
