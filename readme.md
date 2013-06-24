@@ -16,23 +16,23 @@ Since it's possible that this hack has been lost to neglect, here are some scree
 
 ### Mobile Web
 
-![Index page](https://github.com/mimming/agent-yum/blob/master/screenshots/index-thumb.png?raw=true)
-
 The index page
 
-![Happy Cow!](https://github.com/mimming/agent-yum/blob/master/screenshots/happy-cow-thumb.png?raw=true)
+![Index page](https://github.com/mimming/agent-yum/blob/master/screenshots/index-thumb.png?raw=true)
 
 A happy animal!
 
-![Sick Cow!](https://github.com/mimming/agent-yum/blob/master/screenshots/sick-cow-thumb.png?raw=true)
+![Happy Cow!](https://github.com/mimming/agent-yum/blob/master/screenshots/happy-cow-thumb.png?raw=true)
 
 A sick cow! 
 
+![Sick Cow!](https://github.com/mimming/agent-yum/blob/master/screenshots/sick-cow-thumb.png?raw=true)
+
 ### Glass
 
-![Sick Cow, on Glass](https://github.com/mimming/agent-yum/blob/master/screenshots/sick-cow-glass-thumb.png?raw=true)
-
 A sick cow, as viewed on Google Glass
+
+![Sick Cow, on Glass](https://github.com/mimming/agent-yum/blob/master/screenshots/sick-cow-glass-thumb.png?raw=true)
 
 ## License
 Code for this project is licensed under [APL 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) 
