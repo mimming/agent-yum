@@ -14,16 +14,16 @@ This is our hackathon project from [hackmeat](http://hackmeatsv.foodtechconnect.
 ## Screenshots
 Since it's possible that this hack has been lost to neglect, here are some screen shots to show you the awesome.
 
-[Index page](https://github.com/mimming/agent-yum/blob/master/screenshots/index-thumb.png?raw=true)
+![Index page](https://github.com/mimming/agent-yum/blob/master/screenshots/index-thumb.png?raw=true)
 The index page
 
-[Happy Cow!](https://github.com/mimming/agent-yum/blob/master/screenshots/happy-cow-thumb.png?raw=true)
+![Happy Cow!](https://github.com/mimming/agent-yum/blob/master/screenshots/happy-cow-thumb.png?raw=true)
 A happy animal!
 
-[Sick Cow!](https://github.com/mimming/agent-yum/blob/master/screenshots/sick-cow-thumb.png?raw=true)
+![Sick Cow!](https://github.com/mimming/agent-yum/blob/master/screenshots/sick-cow-thumb.png?raw=true)
 A sick cow! 
 
-[Sick Cow, on Glass](https://github.com/mimming/agent-yum/blob/master/screenshots/sick-cow-glass-thumb.png?raw=true)
+![Sick Cow, on Glass](https://github.com/mimming/agent-yum/blob/master/screenshots/sick-cow-glass-thumb.png?raw=true)
 A sick cow, as viewed on Google Glass
 
 
